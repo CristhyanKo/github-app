@@ -18,7 +18,7 @@ const UserInfo = () => (
                             Desenvolvedor Pleno, com domínio em desenvolvimento (desktop, web e app), certificação em Web design, conhecimento em processos de negócio da área pública.
                             </p>
                             <ul className='repos-info list-group'>
-                                <li className='list-group-item'><b>Repositórios:></b> 0</li>
+                                <li className='list-group-item'><b>Repositórios:</b> 0</li>
                                 <li className='list-group-item'><b>Seguidores:</b> 0</li>
                                 <li className='list-group-item'><b>Seguindo:</b> 0</li>
                             </ul>
