@@ -65,7 +65,7 @@
 /******/ 	}
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "7e99203efaf578209715"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "2b1fb2a5352f1aeeb20b"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -18292,29 +18292,30 @@
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	(0, _reactDom.render)(_react2.default.createElement(
-	    _reactHotLoader.AppContainer,
-	    null,
-	    _react2.default.createElement(_app2.default, null)
-	), document.querySelector('[data-js="app"]'));
+	var renderApp = function renderApp(NextApp) {
+	    (0, _reactDom.render)(_react2.default.createElement(
+	        _reactHotLoader.AppContainer,
+	        null,
+	        _react2.default.createElement(NextApp, null)
+	    ), document.querySelector('[data-js="app"]'));
+	};
+	
+	renderApp(_app2.default);
 	
 	if (true) {
-	    module.hot.accepts('./app', function () {
+	    module.hot.accept(427, function () {
 	        var NextApp = __webpack_require__(427).default;
-	
-	        (0, _reactDom.render)(_react2.default.createElement(
-	            _reactHotLoader.AppContainer,
-	            null,
-	            _react2.default.createElement(NextApp, null)
-	        ), document.querySelector('[data-js="app"]'));
+	        renderApp(NextApp);
 	    });
 	}
 	;
-
+	
 	(function () {
 	    if (typeof __REACT_HOT_LOADER__ === 'undefined') {
 	        return;
 	    }
+	
+	    __REACT_HOT_LOADER__.register(renderApp, 'renderApp', 'D:/Cristhyan Kohlhase/GitHub/github-app/src/index.js');
 	})();
 
 	;
@@ -40282,23 +40283,89 @@
 	    value: true
 	});
 	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
 	var _react = __webpack_require__(6);
 	
 	var _react2 = _interopRequireDefault(_react);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	var App = _react2.default.createClass({
-	    displayName: 'App',
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 	
-	    render: function render() {
-	        return _react2.default.createElement(
-	            'div',
-	            null,
-	            'Aplica\xE7\xE3o'
-	        );
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var App = function (_Component) {
+	    _inherits(App, _Component);
+	
+	    function App() {
+	        _classCallCheck(this, App);
+	
+	        return _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).apply(this, arguments));
 	    }
-	});
+	
+	    _createClass(App, [{
+	        key: 'render',
+	        value: function render() {
+	            return _react2.default.createElement(
+	                'div',
+	                { className: 'app' },
+	                _react2.default.createElement(
+	                    'div',
+	                    { className: 'user-info' },
+	                    _react2.default.createElement('img', { src: 'https://avatars2.githubusercontent.com/u/25498050?v=4' }),
+	                    _react2.default.createElement(
+	                        'h2',
+	                        null,
+	                        ' ',
+	                        _react2.default.createElement(
+	                            'a',
+	                            { href: 'https://github.com/CristhyanKo/' },
+	                            ' Cristhyan Veiga Kohlhase Roda '
+	                        )
+	                    ),
+	                    _react2.default.createElement(
+	                        'ul',
+	                        { className: 'repos-info' },
+	                        _react2.default.createElement(
+	                            'li',
+	                            null,
+	                            '- Reposit\xF3rios: 0'
+	                        ),
+	                        _react2.default.createElement(
+	                            'li',
+	                            null,
+	                            '- Seguidores: 0'
+	                        ),
+	                        _react2.default.createElement(
+	                            'li',
+	                            null,
+	                            '- Seguindo: 0'
+	                        )
+	                    ),
+	                    _react2.default.createElement(
+	                        'div',
+	                        { className: 'actions' },
+	                        _react2.default.createElement(
+	                            'button',
+	                            null,
+	                            'Ver Repositorios'
+	                        ),
+	                        _react2.default.createElement(
+	                            'button',
+	                            null,
+	                            'Ver Favoritos'
+	                        )
+	                    )
+	                )
+	            );
+	        }
+	    }]);
+	
+	    return App;
+	}(_react.Component);
 	
 	var _default = App;
 	exports.default = _default;
@@ -40309,9 +40376,9 @@
 	        return;
 	    }
 	
-	    __REACT_HOT_LOADER__.register(App, 'App', 'D:/Cristhyan Kohlhase/Estudo/react-webpack/src/app.js');
+	    __REACT_HOT_LOADER__.register(App, 'App', 'D:/Cristhyan Kohlhase/GitHub/github-app/src/app.js');
 	
-	    __REACT_HOT_LOADER__.register(_default, 'default', 'D:/Cristhyan Kohlhase/Estudo/react-webpack/src/app.js');
+	    __REACT_HOT_LOADER__.register(_default, 'default', 'D:/Cristhyan Kohlhase/GitHub/github-app/src/app.js');
 	})();
 
 	;
