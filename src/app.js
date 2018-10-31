@@ -1,39 +1,46 @@
 'use strict'
 
 import React, { Component } from 'react'
-import Search from './components/search';
-import UserInfo from './components/user-info';
-import Actions from './components/actions';
-import Repos from './components/repos';
-import Header from './components/header';
+import AppContent from './components/app-content';
+import ajax from '@fdaciuk/ajax'
 
 class App extends Component {
+    constructor() {
+        super()
+        this.state = {
+            userinfo: null,
+            repos: [],
+            starred: []
+        }
+    }
+
+    handleSearch(filtro) {
+        ajax().get(`https://api.github.com/users/${filtro}`).then((result) => {
+            this.setState({
+                userinfo: {
+                    username: result.name,
+                    avatar_url: result.avatar_url,
+                    html_url: result.html_url,
+                    public_repos: result.public_repos,
+                    followers: result.followers,
+                    following: result.following
+                }
+            })
+            // userinfo: {
+            //     username: 'Cristhyan Kohlhase',
+            //     avatar_url: 'https://avatars2.githubusercontent.com/u/25498050?v=4',
+            //     html_url : 'https://github.com/CristhyanKo',
+            //     public_repos: 21,
+            //     followers: 16,
+            //     following: 15
+            // },
+
+        console.log(result)
+    })
+    }
+
     render() {
-        return (
-            <div className='app'>
-                <div className='container'>
-                    <Header />
-                    <Search />
-                    <UserInfo />
-                    <Actions />
-                    <div className='row'>
-                        <Repos className='repos' title='Repositórios' repos={
-                                                        [
-                                                            { name: 'Nome do repositório',
-                                                              link: 'Link do repositório' 
-                                                            },
-                                                            { name: 'Nome do repositório 2',
-                                                              link: 'Link do repositório 2' 
-                                                            },
-                                                            { name: 'Nome do repositório 3',
-                                                              link: 'Link do repositório 3' 
-                                                            }
-                                                        ]} />
-                        <Repos className='starred' title='Favoritos' repos={[{ name: 'nome', link: 'link' }]} />
-                    </div>
-                </div>
-            </div>
-        )
+        return <AppContent userinfo={this.state.userinfo} repos={this.state.repos} starred={this.state.starred} handleSearch={(filtro) => this.handleSearch(filtro)} />
     }
 }
 
