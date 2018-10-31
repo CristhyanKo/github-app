@@ -7,13 +7,13 @@ import Actions from './actions';
 import Repos from './repos';
 import Header from './header';
 
-const AppContent = ({ userinfo, repos, starred, handleSearch }) => (
+const AppContent = ({ userinfo, repos, starred, handleSearch, handleReposStarred }) => (
     <div className='app'>
         <div className='container'>
             <Header />
             <Search handleSearch={handleSearch} />
             {!!userinfo && <UserInfo userinfo={userinfo} />}
-            {!!userinfo && <Actions />}
+            {!!userinfo && <Actions handleReposStarred={handleReposStarred} />}
 
             <div className='row'>
                 {!!repos.length && <Repos className='repos' title='Repositórios' repos={repos} />}

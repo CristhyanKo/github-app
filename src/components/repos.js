@@ -4,12 +4,16 @@ import React from 'react'
 
 const Repos = ({ className, title, repos }) => (
     <div className={'col-lg-6 col-md-6 col-xs-12 m-t-b-20 ' + className}>
-        <h2>{title}: </h2>
-        <ul>
+        <div className="list-group">
+        <a className='list-group-item list-group-item-dark d-flex justify-content-between align-items-center'>
+            {title}
+            <span className='badge badge-primary badge-pill '>{repos.length}</span>
+        </a>
+        
             {repos.map((repo, index) => (
-                <li key={index}><a href={repo.link}>{repo.name}</a></li>
+                <a key={index} href={repo.html_url} target='_blank' className='list-group-item list-group-item-action'>{repo.name}</a>
             ))}
-        </ul>
+        </div>
     </div>
 )
 

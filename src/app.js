@@ -18,6 +18,7 @@ class App extends Component {
         ajax().get(`https://api.github.com/users/${filtro}`).then((result) => {
             this.setState({
                 userinfo: {
+                    login: result.login,
                     username: result.name,
                     avatar_url: result.avatar_url,
                     html_url: result.html_url,
@@ -26,21 +27,31 @@ class App extends Component {
                     following: result.following
                 }
             })
-            // userinfo: {
-            //     username: 'Cristhyan Kohlhase',
-            //     avatar_url: 'https://avatars2.githubusercontent.com/u/25498050?v=4',
-            //     html_url : 'https://github.com/CristhyanKo',
-            //     public_repos: 21,
-            //     followers: 16,
-            //     following: 15
-            // },
-
-        console.log(result)
-    })
+        })
     }
 
+    handleReposStarred(filtro) {
+        ajax().get(`https://api.github.com/users/${this.state.userinfo.login}/${filtro}`).then((result) => {
+            this.setState({
+                [filtro]: result.map((repo) => {
+                    return {
+                        name: repo.name,
+                        html_url: repo.html_url
+                    }
+                })
+            })
+        })
+    }
+
+
     render() {
-        return <AppContent userinfo={this.state.userinfo} repos={this.state.repos} starred={this.state.starred} handleSearch={(filtro) => this.handleSearch(filtro)} />
+        return <AppContent
+            userinfo={this.state.userinfo}
+            repos={this.state.repos}
+            starred={this.state.starred}
+            handleSearch={(filtro) => this.handleSearch(filtro)}
+            handleReposStarred={(filtro, user) => this.handleReposStarred(filtro)}
+        />
     }
 }
 
